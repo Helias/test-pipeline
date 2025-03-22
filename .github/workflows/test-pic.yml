@@ -12,13 +12,13 @@ jobs:
       - name: "run test pic"
         run: |
           sudo apt-get install coreutils -y
-          # echo "![Image](https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png)" >> "$GITHUB_STEP_SUMMARY"
+          echo "![Image](https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png)" >> "$GITHUB_STEP_SUMMARY"
           # echo '<img src="https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png" alt="Image" width="300">' >> "$GITHUB_STEP_SUMMARY"
 
-          wget https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png -O screenshot.png
+          wget https://avatars.githubusercontent.com/u/20147732?s=48&v=4 -O pic.png
           # echo "<img src=\"data:image/png;base64,$(base64 -w 0 screenshot.png)\">"  >> "$GITHUB_STEP_SUMMARY"
           # echo "![Image](\"data:image/png;base64,$(base64 -w 0 screenshot.png))\"" >> "$GITHUB_STEP_SUMMARY"
 
-          IMAGE_B64=$(base64 -w 0 screenshot.png)
+          IMAGE_B64=$(base64 -w 0 pic.png)
           echo "### Generated Image" >> $GITHUB_STEP_SUMMARY
           echo "<img src='data:image/png;base64,$IMAGE_B64' width='300'/>" >> $GITHUB_STEP_SUMMARY
