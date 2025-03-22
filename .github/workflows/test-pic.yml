@@ -12,10 +12,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: example
-        run: wget "https://avatars.githubusercontent.com/u/20147732?s=48&v=4" -O pic.png
+        run: wget "https://avatars.githubusercontent.com/u/20147732?s=48&v=4" -O screenshots-1.png
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: pic-as-artifact
-          path: pic.png
+          name: webapp-screenshots
+          path: screenshots-*.png
