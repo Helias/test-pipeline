@@ -3,34 +3,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-pic:
-    runs-on: ubuntu-24.04
+  generate-image:
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
-
-      - name: "run test pic"
+      - name: Creare un'immagine di esempio
         run: |
-          sudo apt-get install coreutils -y
-          wget https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png -O screenshot.png
-          # echo "![Image](https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png)" >> "$GITHUB_STEP_SUMMARY"
-          # echo '<img src="https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png" alt="Image" width="300">' >> "$GITHUB_STEP_SUMMARY"
+          sudo apt-get install imagemagick -y
+          convert -size 200x100 xc:blue image.png
 
-          # wget https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png -O screenshot.png
-          # echo "<img src=\"data:image/jpeg;base64,$(base64 -w 0 screenshot.png)\">"  >> "$GITHUB_STEP_SUMMARY"
-          # echo "![Image](\"data:image/jpeg;base64,$(base64 -w 0 screenshot.png))\"" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: upload pic as artifact
+      - name: Salvare l'immagine come artifact
         uses: actions/upload-artifact@v3
         with:
-          name: report-image
-          path: screenshot.png
+          name: generated-image
+          path: image.png
 
   show-image-in-summary:
     runs-on: ubuntu-latest
-    needs: test-pic
+    needs: generate-image
     steps:
-      - name: download pic as artifact
+      - name: Scaricare l'immagine dall'artifact
         uses: actions/download-artifact@v3
         with:
           name: generated-image
