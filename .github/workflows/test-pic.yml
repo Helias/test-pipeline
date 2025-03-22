@@ -4,18 +4,27 @@ on:
 
 jobs:
   test-pic:
+    timeout-minutes: 180
     runs-on: ubuntu-24.04
     steps:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: example
-        run: wget "https://avatars.githubusercontent.com/u/20147732?s=48&v=4" -O screenshots-1.png
-
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
+      - uses: karol-brejna-i/webpage-screenshot-action@v1
         with:
-          name: webapp-screenshots
-          path: screenshots-*.png
+          url: https://github.com/karol-brejna-i/webpage-screenshot-action/blob/main/README.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: simple-screenshot
+          path: ${{ github.workspace }}/*.png
+          retention-days: 30
+
+      # - name: example
+      #   run: wget "https://avatars.githubusercontent.com/u/20147732?s=48&v=4" -O screenshots-1.png
+
+      # - name: Archive production artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: webapp-screenshots
+      #     path: screenshots-*.png
+      #     retention-days: 30
