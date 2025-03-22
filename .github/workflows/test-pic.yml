@@ -15,4 +15,5 @@ jobs:
           # echo '<img src="https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png" alt="Image" width="300">' >> "$GITHUB_STEP_SUMMARY"
 
           wget https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png -O screenshot.png
-          echo "<img src=\"data:image/jpeg;base64,$(base64 -w 0 screenshot.png)\">"  >> "$GITHUB_STEP_SUMMARY"
+          # echo "<img src=\"data:image/jpeg;base64,$(base64 -w 0 screenshot.png)\">"  >> "$GITHUB_STEP_SUMMARY"
+          echo "![Image](data:image/jpeg;base64,$(base64 -w 0 screenshot.png))" >> "$GITHUB_STEP_SUMMARY"
