@@ -1,0 +1,18 @@
+name: test-pic
+on:
+  workflow_dispatch:
+
+jobs:
+  test-pic:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: "run test pic"
+        run: |
+          echo "![Image](https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png)" >> "$GITHUB_STEP_SUMMARY"
+          echo '<img src="https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png" alt="Image" width="300">' >> "$GITHUB_STEP_SUMMARY"
+
+          wget https://raw.githubusercontent.com/azerothcore/Keira3/master/screenshot.png -O screenshot.png
+          echo "<img src=\"data:image/jpeg;base64,$(base64 -w 0 screenshot.png)\">"  >> "$GITHUB_STEP_SUMMARY"
